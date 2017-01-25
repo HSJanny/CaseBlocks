@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+</head>
+<body>
+
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <a class="navbar-brand" style="font-weight: bold; font-style: italic; font-family: Verdana; font-size: x-large;">Simple CaseBlocks App</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> What is your client reference?</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" ng-model="clientReference" />
+                                        </td>
+                                    </tr>
+                                <tbody>
+                            </table>
+                            <p><button type="button" class="btn btn-primary" ng-click="doSearch()">Search</button></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+          
+            <!-- this div will show  only json return with data -->
+            <div class="container" ng-show="mHome.length > 0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary text-center">
+                            <div class="panel-heading">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-left" style="width:15%"> Client Name</td>
+                                            <td class="text-left">{{mHome[1].cases[0].client_name}}</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr ng-hide="true" ng-repeat-start="eData in mHome[0].cases" ng-init="Index = $index">
+                                        <tr>
+                                            <td class="text-left"> Created At</td>
+                                            <td class="text-left">{{eData.created_at}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Enquiry Source</td>
+                                            <td class="text-left">{{eData.enquiry_source}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Message</td>
+                                            <td class="text-left">{{eData.message}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-left" style="width:15%"> <button type="button" class="btn btn-primary" ng-click="getMoreDetails(Index)">More Details</button> </td>
+                                        </tr>
+                                        </tr>
+                                        <tr ng-hide="true" ng-repeat-end></tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- this div will show when user click to see more detail on each query -->
+            <div class="container" ng-show="mClick">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary text-center">
+                            <div class="panel-heading">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-left" style="width:15%"> Created At</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].created_at}}</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left"> Company</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].company}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Name </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Contact Number </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].contact_number}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Email Address </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].email_address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Country</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].country}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Client enquiry reference </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].client_enquiry_reference}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Title </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Schema Version </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].schema_version}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Updated At </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].updated_at}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Owner Name</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].owner_name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-left"> Unread Conversations</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].unread_conversations}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Current State </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].current_state}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Case Type </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].case_type}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Current State Id </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].current_state_id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Owned by Id</td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].owned_by_id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Owned by type </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].owned_by_type}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Participating Users </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].participating_users[0]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Account Id </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].account_id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Participating Teams </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].participating_teams[0]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Version </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].version}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Collection </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].collection}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Conversations </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].conversations[0]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Tasklists </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].tasklists[0]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> tasks </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].tasks[0]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"> Work Type Id </td>
+                                            <td class="text-left">{{mHome[0].cases[mIndex].work_type_id}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Show/hide json data -->
+            <!--<pre>{{ mHome | json }}</pre>-->
+</div>
+
+</body>
+</html>
